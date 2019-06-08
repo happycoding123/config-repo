@@ -1,0 +1,88 @@
+server:
+  port: 9000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000000
+
+ribbon:
+  ReadTimeout: 600000
+  ConnectTimeout: 600000
+
+zuul:
+  add-proxy-headers: false
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 600000
+    socket-timeout-millis: 600000
+  routes:
+    account:
+      path: /api/account/**
+      serviceId: account
+      stripPrefix: false
+      sensitiveHeaders:
+    price:
+      path: /api/price/**
+      serviceId: price
+      stripPrefix: true
+      sensitiveHeaders:
+    product:
+      path: /api/product/**
+      serviceId: product
+      stripPrefix: true
+      sensitiveHeaders:
+    stock:
+      path: /api/stock/**
+      serviceId: stock
+      stripPrefix: true
+      sensitiveHeaders:
+    order:
+      path: /api/order/**
+      serviceId: order
+      stripPrefix: true
+      sensitiveHeaders:
+    demo:
+      path: /api/demo/**
+      serviceId: demo
+      stripPrefix: true
+      sensitiveHeaders:
+    dap:
+      path: /api/dap/**
+      serviceId: dap
+      stripPrefix: true
+      sensitiveHeaders:
+    manager:
+      path: /api/manager/**
+      serviceId: manager
+      stripPrefix: false
+      sensitiveHeaders:
+    env:
+      path: /api/env/**
+      serviceId: env
+      stripPrefix: true
+      sensitiveHeaders:
+    simple:
+      path: /api/simple/**
+      serviceId: simple
+      stripPrefix: true
+      sensitiveHeaders:
+    config:
+      path: /api/config/**
+      serviceId: config
+      stripPrefix: false
+      sensitiveHeaders:
+    fusion:
+      path: /api/fusion/**
+      serviceId: fusion
+      stripPrefix: false
+      sensitiveHeaders:
+    region:
+      path: /api/region/**
+      serviceId: region
+      stripPrefix: false
+      sensitiveHeaders:
+

@@ -1,0 +1,14 @@
+server:
+  context-path: /api/stock
+  port: 9011
+  
+security:
+  oauth2:
+    client:
+      clientId: stock
+    
+dongpinyun:
+  openIdLoginPwdKey: ${OPENID_LOGIN_PWD_KEY:123456}
+  maxValidateCodeSendPerIp: ${VALIDATE_CODE_SEND_IP_MAX:20}
+  maxValidateCodeSendPerMobile: ${VALIDATE_CODE_SEND_MOBILE_MAX:20}
+

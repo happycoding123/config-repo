@@ -1,0 +1,47 @@
+server:
+  context-path: /api/product
+  port: 9008
+  
+security:
+  oauth2:
+    client:
+      clientId: simple
+  
+spring:
+  datasource:
+    erp:
+      driverClassName: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://172.17.0.1:3306/erp?&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+      username: root
+      password: ${DB_PWD:123456}
+
+mybatis:
+  erp:
+    mapper-locations: classpath*:com/tristone/ssc/dao/erp/**/*Mapper.xml
+  type-aliases-package: com.dongpinyun.dpy.entity
+  config-locations: classpath:mybatis/mybatis-config.xml
+
+# singleton：单体模式；sentinel：哨兵模式
+redis:
+  config:
+    mode: singleton
+    maxIdle: 10
+    minIdle: 2
+    testOnBorrow: true
+
+  # 单机模式
+  singleton:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 10000
+
+  # 哨兵模式
+  sentinel:
+    mastername: mymaster
+    hostport1: 127.0.0.1:26379
+    hostport2: 127.0.0.1:26380
+    
+ssc:
+  openIdLoginPwdKey: ${OPENID_LOGIN_PWD_KEY:123456}
+  maxValidateCodeSendPerIp: ${VALIDATE_CODE_SEND_IP_MAX:20}
+  maxValidateCodeSendPerMobile: ${VALIDATE_CODE_SEND_MOBILE_MAX:20}

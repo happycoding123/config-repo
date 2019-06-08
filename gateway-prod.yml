@@ -1,0 +1,43 @@
+server:
+  port: 9000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 600000
+
+ribbon:
+  ReadTimeout: 600000
+  ConnectTimeout: 600000
+
+zuul:
+  add-proxy-headers: false
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 600000
+    socket-timeout-millis: 600000
+  routes:
+    demo:
+      path: /api/demo/**
+      serviceId: demo
+      stripPrefix: true
+      sensitiveHeaders:
+    config:
+      path: /api/config/**
+      serviceId: config
+      stripPrefix: false
+      sensitiveHeaders:
+    fusion:
+      path: /api/fusion/**
+      serviceId: fusion
+      stripPrefix: false
+      sensitiveHeaders:
+    region:
+      path: /api/region/**
+      serviceId: region
+      stripPrefix: false
+      sensitiveHeaders:
+
